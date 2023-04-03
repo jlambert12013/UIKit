@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     
     
     //  Making a button with a closure using UIButton
-    let myButton: UIButton = {
+    private lazy var myButton: UIButton = {
         
         // Using Button.configuration is the quickest way in UIKit
         var config = UIButton.Configuration.filled()
@@ -20,10 +20,18 @@ class ViewController: UIViewController {
         config.baseForegroundColor = .white
         config.cornerStyle = .capsule
         
+        
+        // Creating the Button and adding functionallity
         let button = UIButton(configuration: config)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(sayHello), for: .touchUpInside)
         return button
     }()
+    
+    @objc func sayHello(){
+        print("Hello, World!")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,8 +45,6 @@ class ViewController: UIViewController {
             myButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             myButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-        
-        
     }
     
     
